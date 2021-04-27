@@ -1,11 +1,15 @@
-# Sample Snack app
+# Pomodoro Tracker
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+Made with Expo.
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo-cli](https://docs.expo.io/get-started/installation).
+To run it, make sure you have the expo cli installed globally. If you want to run it locally on your iOS or Android device make sure you have the Expo Go app installed as well.
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+If you want to run it on a simulator, make sure you have xcode and / or android studio installed and configured.
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.io/c/snack).
+Git clone and cd into the project. Then run expo start and then select "a" for android, or "i" for iOS.
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+You can select your time, etc.
+
+Stay tuned. App will be posted on the app store soon.
+
+谢谢
