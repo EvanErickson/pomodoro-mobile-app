@@ -1,37 +1,57 @@
-import React from 'react';
-import { View, StyleSheet, FlatList, Text, SafeAreaView } from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Text,
+  FlatList,
+  SafeAreaView
+} from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { fontSizes, spacing } from '../../utils/sizes';
-import { RoundedButton } from '../../components/RoundedButton';
+import { fontSizes, paddingSizes } from "../../utils/sizes";
+import { RoundedButton } from "../../components/RoundedButton";
 
-const HistoryItem = ({ item, index }) => {
-  return(
-    <Text>
-      {JSON.stringify(item)}
-    </Text>
-  )
-}
-
-export const FocusHistory = ({ focusHistory, onClear }) => {
+export const FocusHistory = ({ focusHistory, setFocusHistory }) => {
   const clearHistory = () => {
-    onClear();
-  }
+    setFocusHistory([]);
+  };
 
-  return(
+  return (
     <>
-      <SafeAreaView style={{flex: 1}}>
-        <Text>
+      <SafeAreaView style={{ flex: 0.5, alignItems: "center" }}>
+        <Text style={{ fontSize: fontSizes.lg, color: "white" }}>
           Things we've focused on
-          {!!FocusHistory.length && 
-            <FlatList 
-              style={{ flex: 1 }}
-              contentContainerStyle={{ flex: 1, alignItems: 'center'}}
-              data={FocusHistory}
-              renderItem={HistoryItem}
-            />
-          }
         </Text>
+        {!!focusHistory.length && (
+          <FlatList
+            style={{ width: "100%", height: "100%", paddingTop: 16 }}
+            contentContainerStyle={{ alignItems: "center" }}
+            data={focusHistory}
+            renderItem={({ item, index }) => (
+              <Text style={styles.historyItem(item.status)}>
+                {item.subject}
+              </Text>
+            )}
+          />
+        )}
+        {!focusHistory.length && (
+          <Text style={{ color: "white" }}>Nothing yet</Text>
+        )}
       </SafeAreaView>
+      <View style={styles.clearContainer}>
+        <RoundedButton size={75} title="Clear" onPress={() => clearHistory()} />
+      </View>
     </>
-  )
-}
+  );
+};
+
+const styles = StyleSheet.create({
+  historyItem: (status) => ({
+    color: status > 0 ? "green" : "red",
+    fontSize: fontSizes.md,
+  }),
+  clearContainer: {
+    alignItems: "center",
+    padding: paddingSizes.sm,
+  },
+});
